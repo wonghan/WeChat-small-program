@@ -1,0 +1,49 @@
+/**index.wxss**/
+.swiper{
+  padding: 12px; 
+}
+.swiper-img{
+  width: 100vw;
+}
+.title{
+  display: flex;
+  justify-content: center;
+}
+.title-text{
+  font-weight:bold;
+  letter-spacing:1px;
+}
+.list{
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+}
+.list-item{
+  margin: 12px;
+  display: grid;
+  grid-template-columns: 80px 1hr;
+  height: 80px;
+
+}
+.list-item-img{
+  grid-column: 1/2;
+  height: 80px;
+  width: 80px;
+  margin-right: 12px;
+}
+.list-item-text{
+  grid-column: 2/3;
+  display: grid;
+  grid-template-rows: 20px 80px;
+}
+.list-item-text-title{
+  grid-row:1/2;
+  font-weight: bold;
+  color: #000;
+}
+.list-item-text-profile{
+  height: 60px;
+  grid-row: 2/3;
+  overflow: scroll;
+  color: #888;
+}

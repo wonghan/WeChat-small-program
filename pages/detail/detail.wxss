@@ -1,0 +1,18 @@
+.title{
+  font-size: 20pt;
+  color: #09BB07;
+  margin: 8px 12px;
+}
+.button{
+  display: flex;
+  text-align: center;
+  font-size: 14px;
+  margin: 8px auto;
+}
+.route{
+  margin: 0 12px;
+  font-size: 13pt;
+}
+.map-image{
+  width: 100vw;
+}
