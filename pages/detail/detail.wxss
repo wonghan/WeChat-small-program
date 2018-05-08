@@ -1,3 +1,4 @@
+/**detail.wxss**/
 .title{
   font-size: 20pt;
   color: #09BB07;

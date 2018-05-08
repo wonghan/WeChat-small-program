@@ -1,18 +1,14 @@
 {
   "pages":[
     "pages/index/index",
-    "pages/detail/detail"
+    "pages/detail/detail",
+    "pages/search/search"
   ],
   "window":{
-    "backgroundTextStyle":"light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "路途",
     "navigationBarTextStyle":"black",
-    "navigationStyle":"default",
-    "enablePullDownRefresh": true,
-    "backgroundColor": "#000000",
-    "backgroundTextStyle": "light",
-    "backgroundColorTop":"#666"
+    "navigationStyle":"default"
   },
   "networkTimeout": {
     "request": 10000,

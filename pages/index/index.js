@@ -1,10 +1,7 @@
 //index.js
-import utils from '../../utils/index'
 
 Page({
   data: {
-    inputShowed: false,
-    inputVal: "",
     imgUrls: [
       { img: '../../assets/1.jpg', word: '深圳三日游' },
       { img: '../../assets/2.jpg', word: '深圳五日游' },
@@ -80,54 +77,23 @@ Page({
       }
     ]
   },
-  // --搜索框相关函数-- start
-  showInput: function () {
-    this.setData({
-      inputShowed: true
-    });
+  navigateToSearch: function() {
+    wx.navigateTo({
+      url: '/pages/search/search'
+    })
   },
-  hideInput: function () {
-    this.setData({
-      inputVal: "",
-      inputShowed: false
-    });
+  onPullDownRefresh: function () {
+    wx.stopPullDownRefresh()
   },
-  clearInput: function () {
-    this.setData({
-      inputVal: ""
-    });
-  },
-  inputTyping: function (e) {
-    this.setData({
-      inputVal: e.detail.value
-    });
-  },
-  inputSubmit: function (e) {
-    wx.showToast({
-      title: '数据加载中',
-      icon: 'loading',
-      duration: 3000
-    });
-    let key=e.detail.value;
-    //  提交，接收后台数据
-    utils.getData(this,key,(res)=>{
-      if(res.data.objects.length===0){
-        wx.showToast({
-          title: '暂无数据',
-          icon: 'none',
-          duration: 3000
-        });
-      }else{
-        this.setData({
-          dataArray: res.data.objects
-        });
-        wx.showToast({
-          title: '加载成功',
-          icon: 'success',
-          duration: 3000
-        });
+  onLoad: function() {
+    wx.getLocation({
+      type: 'wgs84',
+      success: function (res) {
+        var latitude = res.latitude
+        var longitude = res.longitude
+        var speed = res.speed
+        var accuracy = res.accuracy
       }
     })
   }
-  // --搜索框相关函数-- end
 });

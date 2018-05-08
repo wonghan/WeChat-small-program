@@ -37,7 +37,7 @@ Page({
   changeDay: function(e){
     let id = e.target.id-1;
     let buttonType = [];
-    for (let i = 0; i < length; i++) {
+    for (let i = 0; i < this.data.length; i++) {
       buttonType.push('default')
     }
     buttonType[id]='primary';

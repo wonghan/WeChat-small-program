@@ -1,4 +1,4 @@
-{
+module.exports ={
   "fields": [
     "city",
     "title",
