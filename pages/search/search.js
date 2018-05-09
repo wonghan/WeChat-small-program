@@ -6,6 +6,15 @@ Page({
     inputVal: "",
     dataArray: []
   },
+  onLoad: function (data) {
+    let city = data.city;
+    if(city){
+      this.setData({
+        inputVal:city
+      })
+      this.inputSubmit();
+    }
+  },
   // --搜索框相关函数-- start
   clearInput: function () {
     this.setData({
@@ -24,10 +33,9 @@ Page({
       duration: 3000
     });
     let inputVal=this.data.inputVal;
-    let len = inputVal.length;
     let key;
-    if(inputVal[len-1]==='市'){  // 反正单搜索'市'，返回所有数据的bug
-      key = inputVal.substr(0,len-1);
+    if(inputVal==='市'){  // 防止只搜索'市'，返回所有数据的bug
+      key = '';
     }else{
       key = inputVal;
     }

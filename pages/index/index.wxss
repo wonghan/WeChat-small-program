@@ -1,6 +1,7 @@
 /**index.wxss**/
 .swiper{
-  padding: 12px; 
+  padding: 0 10px; 
+  margin: 10px 0;
 }
 .swiper-img{
   width: 100vw;
@@ -16,11 +17,11 @@
 .list{
   display: flex;
   flex-direction: column;
-  margin-top: 12px;
+  margin-top: 10px;
 }
 .list-item{
-  margin: 0 12px;
-  padding: 12px 0;
+  margin: 0 10px;
+  padding: 10px 0;
   display: flex; 
   height: 80px;
   border-top:1rpx solid #d9d9d9;
@@ -28,7 +29,7 @@
 .list-item-img{
   height: 80px;
   width: 80px;
-  margin-right: 12px;
+  margin-right: 10px;
   flex:1;
 }
 .list-item-text{

@@ -1,99 +1,106 @@
 //index.js
+import dataList from '../../mocks/data'
+import utils from '../../utils/index'
 
 Page({
   data: {
+    position: '',
+    isShowPosition: false,
     imgUrls: [
-      { img: '../../assets/1.jpg', word: '深圳三日游' },
-      { img: '../../assets/2.jpg', word: '深圳五日游' },
-      { img: '../../assets/3.jpg', word: '广州三日游' },
-      { img: '../../assets/4.jpg', word: '广州五日游' }
+      { img: 'https://cloud-minapp-14474.cloud.ifanrusercontent.com/1fGDmdHBSwtuerSD.jpg', city: '广州' },
+      { img: 'https://cloud-minapp-14474.cloud.ifanrusercontent.com/1fGDmdBBklNwwnxM.jpg', city: '上海' },
+      { img: 'https://cloud-minapp-14474.cloud.ifanrusercontent.com/1fGDmdMnoGefDkut.jpg', city: '杭州' },
+      { img: 'https://cloud-minapp-14474.cloud.ifanrusercontent.com/1fGDmdCnvpfOiLPp.jpg', city: '北京' }
     ],
-    dataArray: [
-      {
-        "profile": "广州是粤食之乡，购物的天堂，文化交流之地，也是一座历史与现代感并存的南国城市。这条线路是根据景点的位置与热度来安排的，能叫你更好的了解这里。",
-        "city": "广州市",
-        "picture": "https://cloud-minapp-14474.cloud.ifanrusercontent.com/1fEdUUDAuZBUfMSa.png",
-        "map": [
-          "https://cloud-minapp-14474.cloud.ifanrusercontent.com/1fEdUUtdLYxVPsjy.png",
-          "https://cloud-minapp-14474.cloud.ifanrusercontent.com/1fEdUUHUkhfjnisZ.png",
-          "https://cloud-minapp-14474.cloud.ifanrusercontent.com/1fEdUUAhTZlmTSnO.png",
-          "https://cloud-minapp-14474.cloud.ifanrusercontent.com/1fEdUUwlvNZzBvxn.png",
-          "https://cloud-minapp-14474.cloud.ifanrusercontent.com/1fEdUUBehqqkRNBs.png"
-        ],
-        "route": [
-          "石室圣心大教堂(1小时) → 沙面(3小时) → 陈家祠(1小时) → 上下九商业步行街(3小时)",
-          "越秀公园(2小时) → 中山纪念堂(2小时) → 北京路步行街(3小时) → 珠江夜游(1小时)",
-          "中山大学(2小时) → 红砖厂创意园(3小时) → 海心沙广场(1小时) → 广州塔(小蛮腰)(2小时)",
-          "广州长隆野生动物世界(全天)",
-          "白云山(3小时)"
-        ],
-        "title": "广州五日游",
-        "id": "5aec87d1890a1f0bd9b38326",
-        "briefRoute": "石室圣心大教堂-越秀公园-中山大学-长隆野生动物世界-白云山"
-      },
-      {
-        "profile": "广州是粤食之乡，购物的天堂，文化交流之地，也是一座历史与现代感并存的南国城市。这条线路是根据景点的位置与热度来安排的，能叫你更好的了解这里。",
-        "city": "广州市",
-        "picture": "https://cloud-minapp-14474.cloud.ifanrusercontent.com/1fEdUUDAuZBUfMSa.png",
-        "map": [
-          "https://cloud-minapp-14474.cloud.ifanrusercontent.com/1fEdUUtdLYxVPsjy.png",
-          "https://cloud-minapp-14474.cloud.ifanrusercontent.com/1fEdUUHUkhfjnisZ.png",
-          "https://cloud-minapp-14474.cloud.ifanrusercontent.com/1fEdUUAhTZlmTSnO.png",
-          "https://cloud-minapp-14474.cloud.ifanrusercontent.com/1fEdUUwlvNZzBvxn.png",
-          "https://cloud-minapp-14474.cloud.ifanrusercontent.com/1fEdUUBehqqkRNBs.png"
-        ],
-        "route": [
-          "石室圣心大教堂(1小时) → 沙面(3小时) → 陈家祠(1小时) → 上下九商业步行街(3小时)",
-          "越秀公园(2小时) → 中山纪念堂(2小时) → 北京路步行街(3小时) → 珠江夜游(1小时)",
-          "中山大学(2小时) → 红砖厂创意园(3小时) → 海心沙广场(1小时) → 广州塔(小蛮腰)(2小时)",
-          "广州长隆野生动物世界(全天)",
-          "白云山(3小时)"
-        ],
-        "title": "广州五日游",
-        "id": "5aec87d1890a1f0bd9b38326",
-        "briefRoute": "石室圣心大教堂-越秀公园-中山大学-长隆野生动物世界-白云山"
-      },
-      {
-        "profile": "广州是粤食之乡，购物的天堂，文化交流之地，也是一座历史与现代感并存的南国城市。这条线路是根据景点的位置与热度来安排的，能叫你更好的了解这里。",
-        "city": "广州市",
-        "picture": "https://cloud-minapp-14474.cloud.ifanrusercontent.com/1fEdUUDAuZBUfMSa.png",
-        "map": [
-          "https://cloud-minapp-14474.cloud.ifanrusercontent.com/1fEdUUtdLYxVPsjy.png",
-          "https://cloud-minapp-14474.cloud.ifanrusercontent.com/1fEdUUHUkhfjnisZ.png",
-          "https://cloud-minapp-14474.cloud.ifanrusercontent.com/1fEdUUAhTZlmTSnO.png",
-          "https://cloud-minapp-14474.cloud.ifanrusercontent.com/1fEdUUwlvNZzBvxn.png",
-          "https://cloud-minapp-14474.cloud.ifanrusercontent.com/1fEdUUBehqqkRNBs.png"
-        ],
-        "route": [
-          "石室圣心大教堂(1小时) → 沙面(3小时) → 陈家祠(1小时) → 上下九商业步行街(3小时)",
-          "越秀公园(2小时) → 中山纪念堂(2小时) → 北京路步行街(3小时) → 珠江夜游(1小时)",
-          "中山大学(2小时) → 红砖厂创意园(3小时) → 海心沙广场(1小时) → 广州塔(小蛮腰)(2小时)",
-          "广州长隆野生动物世界(全天)",
-          "白云山(3小时)"
-        ],
-        "title": "广州五日游",
-        "id": "5aec87d1890a1f0bd9b38326",
-        "briefRoute": "石室圣心大教堂-越秀公园-中山大学-长隆野生动物世界-白云山"
-      }
-    ]
+    dataArray: [],
+    dataPosition: []
   },
   navigateToSearch: function() {
     wx.navigateTo({
       url: '/pages/search/search'
     })
   },
+  changeShow:function() {
+    let self = this;
+    if(!this.data.isShowPosition){
+      this.setData({
+        isShowPosition: true
+      })
+      if (this.data.dataPosition.length===0){
+        wx.showToast({
+          title: '您当前城市暂无数据',
+          icon: 'none',
+          duration: 3000
+        });
+      }else{
+        this.setData({
+          dataArray: this.data.dataPosition
+        })
+      }
+    }else{
+      this.setData({
+        dataArray: dataList.data,
+        isShowPosition: false
+      })
+    }
+  },
+  getPositionFunction:function(){
+    let self = this;  // 获取地理位置，逆地址解析获取当前城市
+    utils.getPosition((res) => {
+      self.setData({
+        position: res
+      })
+      self.getPositionDataFunction() // 获取当前城市数据
+    },
+      (res) => { // 失败的回调，报错
+        wx.showToast({
+          title: res,
+          icon: 'none',
+          duration: 3000
+        });
+      })
+  },
+  getPositionDataFunction:function(){
+    let self = this;
+    //  提交，接收后台数据
+    utils.getData(self, self.data.position,
+      (res) => { // 成功的回调
+        if (res.data.objects.length === 0) {
+          // wx.showToast({
+          //   title: '您当前城市暂无数据',
+          //   icon: 'none',
+          //   duration: 3000
+          // });
+        } else {
+          self.setData({
+            dataPosition: res.data.objects
+          });
+          // wx.showToast({
+          //   title: '加载成功',
+          //   icon: 'success',
+          //   duration: 3000
+          // });
+        }
+      })
+  },
   onPullDownRefresh: function () {
+    let self = this;
+    wx.showToast({
+      title: '数据加载中',
+      icon: 'loading',
+      duration: 3000
+    });
+    wx.showToast({
+      title: '加载成功',
+      icon: 'success',
+      duration: 3000
+    });
     wx.stopPullDownRefresh()
   },
   onLoad: function() {
-    wx.getLocation({
-      type: 'wgs84',
-      success: function (res) {
-        var latitude = res.latitude
-        var longitude = res.longitude
-        var speed = res.speed
-        var accuracy = res.accuracy
-      }
+    this.setData({
+      dataArray: dataList.data
     })
+    this.getPositionFunction()
   }
 });

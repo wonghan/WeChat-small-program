@@ -17,11 +17,13 @@
   <view class="page__bd">
   <!-- swiper -->
     <view class="swiper">
-      <swiper indicator-dots="true" autoplay="true" circular="true" indicator-color="#999" indicator-active-color="#eee">
-        <block wx:for="{{imgUrls}}" wx:key="{{item.word}}">
+      <swiper indicator-dots="true" autoplay="true" circular="true" indicator-color="#999" indicator-active-color="#eee" style='height:56vw;'>
+        <block wx:for="{{imgUrls}}" wx:key="{{item.city}}">
+        <navigator url="/pages/search/search?city={{item.city}}">
           <swiper-item>
             <image class="swiper-img" src="{{item.img}}" mode="aspectFill"></image>
           </swiper-item>
+        </navigator>
         </block>
       </swiper>
     </view>
@@ -29,14 +31,16 @@
   <!-- title -->
     <view class='title'>
       <text>——</text>
-      <text class='title-text'>热门路线</text>
+      <text class='title-text' bindtap='changeShow'>热门路线</text>
+      <text>/</text>
+      <text class='title-text' bindtap='changeShow'>当前城市</text>
       <text >——</text>
     </view>
 
   <!-- list -->
     <view class="list">
       <block wx:for="{{dataArray}}" wx:key="{{item.id}}">
-        <navigator url="/pages/detail/detail?map={{item.map}}&route={{item.route}}&title={{item.title}}&city={{item.city}}&briefRoute={{item.briefRoute}}" open-type="navigate">
+        <navigator url="/pages/detail/detail?map={{item.map}}&route={{item.route}}&title={{item.title}}&city={{item.city}}" open-type="navigate">
           <view class="list-item">
             <image class="list-item-img" src="{{item.picture}}" mode="aspectFill"></image>
             <view class="list-item-text">

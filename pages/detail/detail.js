@@ -30,8 +30,7 @@ Page({
       day: day,
       buttonType: buttonType,
       title: data.title,
-      city: data.city,
-      briefRoute: data.briefRoute
+      city: data.city
     })
   },
   changeDay: function(e){
