@@ -23,20 +23,58 @@ Page({
   changeShow:function() {
     let self = this;
     if(!this.data.isShowPosition){
-      this.setData({
-        isShowPosition: true
-      })
-      if (this.data.dataPosition.length===0){
-        wx.showToast({
-          title: '您当前城市暂无数据',
-          icon: 'none',
-          duration: 3000
-        });
-      }else{
-        this.setData({
-          dataArray: this.data.dataPosition
+      if(this.data.position){
+        if (this.data.dataPosition.length === 0) {
+          wx.showToast({
+            title: '您当前城市暂无数据',
+            icon: 'none',
+            duration: 3000
+          });
+        } else {
+          this.setData({
+            isShowPosition: true,
+            dataArray: this.data.dataPosition
+          })
+        }
+      }else{ // 若一开始用户点不同意获取地理位置，则重新获取当前地理位置
+        let promise = new Promise(function(resolve,reject){ // 用Promise写异步调用
+            // 获取地理位置，逆地址解析获取当前城市
+          utils.getPosition((res) => {
+            self.setData({
+              position: res
+            })
+            resolve() // 获取当前城市数据
+          },
+            (res) => { // 失败的回调，报错
+              wx.showToast({
+                title: res,
+                icon: 'none',
+                duration: 3000
+              });
+              reject()
+            })
         })
+        promise.then(function () {
+          //  提交，接收后台数据
+          utils.getData(self, self.data.position,
+            (res) => { // 成功的回调
+              if (res.data.objects.length > 0) {
+                self.setData({
+                  dataPosition: res.data.objects,
+                  isShowPosition: true,
+                  dataArray: res.data.objects
+                })
+              }else{  //  若后台无数据
+                wx.showToast({
+                  title: '您当前城市暂无数据',
+                  icon: 'none',
+                  duration: 3000
+                });
+              }
+            })
+        }).catch(function(){console.log('语法错误')})
       }
+
     }else{
       this.setData({
         dataArray: dataList.data,
@@ -65,21 +103,10 @@ Page({
     //  提交，接收后台数据
     utils.getData(self, self.data.position,
       (res) => { // 成功的回调
-        if (res.data.objects.length === 0) {
-          // wx.showToast({
-          //   title: '您当前城市暂无数据',
-          //   icon: 'none',
-          //   duration: 3000
-          // });
-        } else {
+        if (res.data.objects.length > 0) {
           self.setData({
             dataPosition: res.data.objects
-          });
-          // wx.showToast({
-          //   title: '加载成功',
-          //   icon: 'success',
-          //   duration: 3000
-          // });
+          })
         }
       })
   },
@@ -90,6 +117,10 @@ Page({
       icon: 'loading',
       duration: 3000
     });
+    this.setData({
+      dataArray: dataList.data,
+      isShowPosition: false
+    })
     wx.showToast({
       title: '加载成功',
       icon: 'success',
