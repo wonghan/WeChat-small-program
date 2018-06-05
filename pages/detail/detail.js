@@ -10,7 +10,9 @@ Page({
     "title": "",
     "city": "",
     "briefRoute": "",
-    "buttonType": []
+    "buttonType": [],
+    "isStar": false,
+    "starUrl": "/mocks/img/star.png"
   },
   onLoad: function (data) {
     let map = data.map.split(',');
@@ -44,5 +46,18 @@ Page({
       count: id,
       buttonType: buttonType
     })
+  },
+  changeStar: function(e){
+    if(this.data.isStar){
+      this.setData({
+        isStar: false,
+        starUrl: "/mocks/img/star.png"
+      })
+    }else{
+      this.setData({
+        isStar: true,
+        starUrl: "/mocks/img/star-active.png"
+      })
+    }
   }
 })

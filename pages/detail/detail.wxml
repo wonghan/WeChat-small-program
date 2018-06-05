@@ -14,4 +14,8 @@
       <text class='route-text'>{{route[count]}}</text>
     </view>
   </view>
+  <view class="bar">
+    <image class="bar-icon" src="{{starUrl}}" bindtap="changeStar"></image>
+    <image class="bar-icon" src="/mocks/img/comment.png"></image>
+  </view>
 </view>

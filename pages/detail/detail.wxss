@@ -17,3 +17,18 @@
 .map-image{
   width: 100vw;
 }
+.bar{
+  position: fixed;
+  bottom: 0;
+  height: 50px;
+  box-shadow: 0 5px 30px #888888;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.bar-icon{
+  width: 30px;
+  height: 30px;
+  margin-right: 20px;
+}
