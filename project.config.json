@@ -4,13 +4,14 @@
 		"ignore": []
 	},
 	"setting": {
-		"urlCheck": true,
+		"urlCheck": false,
 		"es6": true,
 		"postcss": true,
 		"minified": true,
 		"newFeature": true
 	},
 	"compileType": "miniprogram",
+	"qcloudRoot": "./server/",
 	"libVersion": "1.9.98",
 	"appid": "wx88971a298120b873",
 	"projectname": "%E8%B7%AF%E9%80%94",

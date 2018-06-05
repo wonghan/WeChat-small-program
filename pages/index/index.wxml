@@ -15,6 +15,7 @@
     </view>
   </view>
   <view class="page__bd">
+  
   <!-- swiper -->
     <view class="swiper">
       <swiper indicator-dots="true" autoplay="true" circular="true" indicator-color="#999" indicator-active-color="#eee" style='height:56vw;'>
