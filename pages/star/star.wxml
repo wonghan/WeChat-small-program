@@ -1,0 +1,14 @@
+<!-- list -->
+<view class="list">
+  <block wx:for="{{dataArray}}" wx:key="{{item.id}}">
+    <navigator url="/pages/detail/detail?map={{item.map}}&route={{item.route}}&title={{item.title}}&city={{item.city}}&id={{item.id}}" open-type="navigate">
+      <view class="list-item">
+        <image class="list-item-img" src="{{item.picture}}" mode="aspectFill"></image>
+        <view class="list-item-text">
+          <view class="list-item-text-title">{{item.title}}</view>
+          <view class="list-item-text-profile">{{item.briefRoute}}</view>
+        </view>
+      </view>
+    </navigator>
+  </block>
+</view>

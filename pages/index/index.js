@@ -23,6 +23,7 @@ Page({
   changeShow:function() {
     let self = this;
     if(!this.data.isShowPosition){
+
       if(this.data.position){
         if (this.data.dataPosition.length === 0) {
           wx.showToast({
@@ -132,6 +133,28 @@ Page({
     this.setData({
       dataArray: dataList.data
     })
+    // 设置当前位置
     this.getPositionFunction()
+    // 微信用户登录小程序，获取用户ID
+    wx.BaaS.login(false).then(res => {
+      // 登录成功
+      try {
+        wx.setStorageSync('id', res.id)
+        let MyUser = new wx.BaaS.User()
+        let userID = res.id
+        MyUser.get(userID).then(res => {
+          // success
+          wx.setStorageSync('star', res.data.star)
+        }, err => {
+          // err
+          console.log(res)
+        })
+      } catch (e) {
+        console.log(e)
+      }
+    }, res => {
+      // 登录失败
+      console.log(res)
+    })
   }
 });

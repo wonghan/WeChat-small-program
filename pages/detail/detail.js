@@ -12,11 +12,14 @@ Page({
     "briefRoute": "",
     "buttonType": [],
     "isStar": false,
-    "starUrl": "/mocks/img/star.png"
+    "starUrl": "/mocks/img/star.png",
+    "id":''
   },
   onLoad: function (data) {
+    let self = this
     let map = data.map.split(',');
     let route = data.route.split(',');
+    let id = data.id;
     let len = route.length;
     let day=[];
     let buttonType=[];
@@ -32,8 +35,28 @@ Page({
       day: day,
       buttonType: buttonType,
       title: data.title,
-      city: data.city
+      city: data.city,
+      id: id
     })
+    // 收藏按钮
+    try {
+      let value = wx.getStorageSync('star')
+      if (value) {
+        // Do something with return value
+        for(let i=0;i<value.length;i++){
+          if(value[i]===this.data.id){
+            self.setData({
+              isStar: true,
+              starUrl: "/mocks/img/star-active.png"
+            })
+            return
+          }
+        }
+      }
+    } catch (e) {
+      // Do something when catch error
+      console.log(e)
+    }
   },
   changeDay: function(e){
     let id = e.target.id-1;
@@ -47,16 +70,46 @@ Page({
       buttonType: buttonType
     })
   },
+  // 切换收藏状态
   changeStar: function(e){
+    // 若已收藏
     if(this.data.isStar){
-      this.setData({
-        isStar: false,
-        starUrl: "/mocks/img/star.png"
+      let MyUser = new wx.BaaS.User()
+      let currentUser = MyUser.getCurrentUserWithoutData()
+      // age 为自定义字段
+      currentUser.remove('star', this.data.id).update().then(res => {
+        // success
+        wx.setStorage({
+          key: "star",
+          data: res.data.star
+        })
+        this.setData({
+          isStar: false,
+          starUrl: "/mocks/img/star.png"
+        })
+      }, err => {
+        // err
+        console.log(res)
       })
+ 
+    // 若未收藏
     }else{
-      this.setData({
-        isStar: true,
-        starUrl: "/mocks/img/star-active.png"
+      let MyUser = new wx.BaaS.User()
+      let currentUser = MyUser.getCurrentUserWithoutData()
+      // age 为自定义字段
+      currentUser.append('star', this.data.id).update().then(res => {
+        wx.setStorage({
+          key: "star",
+          data: res.data.star
+        })
+        // success
+        this.setData({
+          isStar: true,
+          starUrl: "/mocks/img/star-active.png"
+        })
+      }, err => {
+        // err
+        console.log(res)
       })
     }
   }

@@ -30,15 +30,15 @@
 
   <!-- title -->
     <view class='title'>
-      <text>——</text>
-      <text class='title-text' bindtap='changeShow'>为您推荐/当前城市</text>
-      <text >——</text>
+      <text class="{{isShowPosition ? 'title-text':'title-text title-text-active'}}" bindtap='changeShow'>为您推荐</text>
+      <text class='title-text' bindtap='changeShow'>｜</text>
+      <text class="{{!isShowPosition ? 'title-text':'title-text title-text-active'}}" bindtap='changeShow'>当前城市</text>
     </view>
 
   <!-- list -->
     <view class="list">
       <block wx:for="{{dataArray}}" wx:key="{{item.id}}">
-        <navigator url="/pages/detail/detail?map={{item.map}}&route={{item.route}}&title={{item.title}}&city={{item.city}}" open-type="navigate">
+        <navigator url="/pages/detail/detail?map={{item.map}}&route={{item.route}}&title={{item.title}}&city={{item.city}}&id={{item.id}}" open-type="navigate">
           <view class="list-item">
             <image class="list-item-img" src="{{item.picture}}" mode="aspectFill"></image>
             <view class="list-item-text">

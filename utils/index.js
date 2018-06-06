@@ -1,6 +1,6 @@
 let bmap = require('../utils/bmap-wx.min.js');
 
-let getData = (ctx, key1, callback,key2,key3,key4) => {
+let getData = (ctx, key1, callback,key2,key3,key4,key5) => {
 
   let tableId = getApp().globalData.tableId;
   let Data = new wx.BaaS.TableObject(tableId);
@@ -8,6 +8,7 @@ let getData = (ctx, key1, callback,key2,key3,key4) => {
   let query2 = new wx.BaaS.Query();
   let query3 = new wx.BaaS.Query();
   let query4 = new wx.BaaS.Query();
+  let query5 = new wx.BaaS.Query();
   if(key1){
     // 城市
     query1.contains('city', key1)
@@ -24,7 +25,11 @@ let getData = (ctx, key1, callback,key2,key3,key4) => {
     // 时间
     query4.in('time', [key4]);
   }
-  let andQuery = wx.BaaS.Query.and(query1, query2, query3,query4)
+  if (key5) {
+    // 收藏
+    query5.in('id', key5);
+  }
+  let andQuery = wx.BaaS.Query.and(query1, query2, query3,query4,query5)
 
 
   // 查询数据
