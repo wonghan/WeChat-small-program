@@ -38,6 +38,12 @@ Page({
       city: data.city,
       id: id
     })
+    // 风格标签缓存
+    let style = data.style.split(',')
+    wx.setStorage({
+      key: "style",
+      data: style
+    })
     // 收藏按钮
     try {
       let value = wx.getStorageSync('star')

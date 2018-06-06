@@ -118,10 +118,38 @@ Page({
       icon: 'loading',
       duration: 3000
     });
-    this.setData({
-      dataArray: dataList.data,
-      isShowPosition: false
-    })
+    try {
+      let value = wx.getStorageSync('style')
+      if (value) {
+        // Do something with return value
+        let len = value.length;
+        let random = Math.floor(Math.random()*len)
+        // 根据历史点击中随机选择一个风格标签推荐
+        value = value[random]
+        //  提交，接收后台数据
+        utils.getData(this, '', (res) => {
+          if (res.data.objects.length === 0) {
+            this.setData({
+              dataArray: dataList.data,
+              isShowPosition: false
+            })
+          } else {
+            this.setData({
+              dataArray: res.data.objects,
+              isShowPosition: false
+            });
+          }
+        }, '', '', '','',value)
+      }else{
+        this.setData({
+          dataArray: dataList.data,
+          isShowPosition: false
+        })
+      }
+    } catch (e) {
+      // Do something when catch error
+      console.log(e)
+    }
     wx.showToast({
       title: '加载成功',
       icon: 'success',
