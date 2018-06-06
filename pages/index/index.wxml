@@ -31,7 +31,7 @@
   <!-- title -->
     <view class='title'>
       <text>——</text>
-      <text class='title-text' bindtap='changeShow'>为您推荐</text>
+      <text class='title-text' bindtap='changeShow'>为您推荐/当前城市</text>
       <text >——</text>
     </view>
 

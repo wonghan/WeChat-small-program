@@ -1,14 +1,34 @@
 let bmap = require('../utils/bmap-wx.min.js');
 
-let getData = (ctx, key, callback) => {
+let getData = (ctx, key1, callback,key2,key3,key4) => {
 
   let tableId = getApp().globalData.tableId;
   let Data = new wx.BaaS.TableObject(tableId);
-  let query = new wx.BaaS.Query();
+  let query1 = new wx.BaaS.Query();
+  let query2 = new wx.BaaS.Query();
+  let query3 = new wx.BaaS.Query();
+  let query4 = new wx.BaaS.Query();
+  if(key1){
+    // 城市
+    query1.contains('city', key1)
+  }
+  if (key2) {
+    // 位置
+    query2.in('loca', [key2]);
+  }
+  if (key3) {
+    // 风格
+    query3.in('style', [key3]);
+  }
+  if (key4) {
+    // 时间
+    query4.in('time', [key4]);
+  }
+  let andQuery = wx.BaaS.Query.and(query1, query2, query3,query4)
 
-  query.contains('city', key)
 
-  Data.setQuery(query)
+  // 查询数据
+  Data.setQuery(andQuery)
     .find()
     .then(res => callback(res))
     .catch(err => console.dir(err))

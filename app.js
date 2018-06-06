@@ -10,6 +10,11 @@ App({
     let clientId = this.globalData.clientId
 
     wx.BaaS.init(clientId)
+
+    // 打开调试
+    wx.setEnableDebug({
+      enableDebug: true
+    })
   },
 
   globalData: {

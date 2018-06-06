@@ -17,7 +17,37 @@
   </view>
   <view class="page__bd">
 
-
+  <!-- fliter -->
+  <view class="fliter weui-navbar">
+    <view class="fliter-item">
+      <picker bindchange="locaPickerChange" value="{{locaIndex}}" range="{{locaArray}}">
+        <view class="picker">
+          {{locaArray[locaIndex]}}
+        </view>
+      </picker>
+    </view>  
+    <view class="fliter-item">
+      <picker bindchange="stylePickerChange" value="{{styleIndex}}" range="{{styleArray}}">
+        <view class="picker">
+          {{styleArray[styleIndex]}}
+        </view>
+      </picker>
+    </view>  
+    <view class="fliter-item">
+      <picker bindchange="timePickerChange" value="{{timeIndex}}" range="{{timeArray}}">
+        <view class="picker">
+          {{timeArray[timeIndex]}}
+        </view>
+      </picker>
+    </view>
+    <view class="fliter-item">
+    
+    </view>
+    <view class="fliter-item">
+    
+    </view>
+  </view>
+  
   <!-- list -->
     <view class="list">
       <block wx:for="{{dataArray}}" wx:key="{{item.id}}">
