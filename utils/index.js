@@ -54,6 +54,22 @@ let getPosition = (resolve,reject) => {
     reject(data.errMsg)
   };
   var success = function (data) {
+    wx.setStorage({
+      key: "country",
+      data: data.originalData.result.addressComponent.country
+    })
+    wx.setStorage({
+      key: "province",
+      data: data.originalData.result.addressComponent.province
+    })
+    wx.setStorage({
+      key: "city",
+      data: data.originalData.result.addressComponent.city
+    })
+    wx.setStorage({
+      key: "description",
+      data: data.originalData.result.sematic_description
+    })
     resolve(data.originalData.result.addressComponent.city)
   }
   // 发起regeocoding检索请求 

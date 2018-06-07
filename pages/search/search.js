@@ -47,16 +47,19 @@ Page({
       wx.showToast({
         title: '请输入关键字',
         icon: 'none',
-        duration: 3000
+        duration: 1000
       });
     }else{
       //  提交，接收后台数据
       utils.getData(this, key1, (res) => {
         if (res.data.objects.length === 0) {
+          this.setData({
+            dataArray: ''
+          });
           wx.showToast({
             title: '暂无数据',
             icon: 'none',
-            duration: 3000
+            duration: 1000
           });
         } else {
           this.setData({
@@ -65,7 +68,7 @@ Page({
           wx.showToast({
             title: '加载成功',
             icon: 'success',
-            duration: 3000
+            duration:1000
           });
         }
       },key2,key3,key4)
@@ -97,4 +100,9 @@ Page({
       this.inputSubmit()
     }
   },
+  onShareAppMessage: function (res) {
+    return {
+      path: '/pages/index/index'
+    }
+  }
 });

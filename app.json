@@ -5,7 +5,9 @@
     "pages/search/search",
     "pages/user/user",
     "pages/recommend/recommend",
-    "pages/star/star"
+    "pages/star/star",
+    "pages/history/history",
+    "pages/information/information"
   ],
   "window":{
     "navigationBarBackgroundColor": "#fff",

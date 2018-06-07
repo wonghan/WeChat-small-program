@@ -36,7 +36,8 @@ Page({
       buttonType: buttonType,
       title: data.title,
       city: data.city,
-      id: id
+      id: id,
+      picture: data.picture
     })
     // 风格标签缓存
     let style = data.style.split(',')
@@ -44,13 +45,28 @@ Page({
       key: "style",
       data: style
     })
-    // 收藏按钮
     try {
+      // 足迹
+      let history = wx.getStorageSync('history')
+      if (history) {
+        // Do something with return value
+        history.push(id)
+        wx.setStorage({
+          key: "history",
+          data: history
+        })
+      } else {
+        wx.setStorage({
+          key: "history",
+          data: [id]
+        })
+      }
+      // 收藏按钮
       let value = wx.getStorageSync('star')
       if (value) {
         // Do something with return value
-        for(let i=0;i<value.length;i++){
-          if(value[i]===this.data.id){
+        for (let i = 0; i < value.length; i++) {
+          if (value[i] === this.data.id) {
             self.setData({
               isStar: true,
               starUrl: "/mocks/img/star-active.png"
@@ -117,6 +133,13 @@ Page({
         // err
         console.log(res)
       })
+    }
+  },
+  onShareAppMessage: function (res) {
+    return {
+      title: this.data.title,
+      imageUrl: this.data.picture ? this.data.picture : '',
+      path: `/pages/detail/detail?map=${this.data.map}&route=${this.data.route}&title=${this.data.title}&city=${this.data.city}&id=${this.data.id}&style=${this.data.style}&picture=${this.data.picture}`
     }
   }
 })

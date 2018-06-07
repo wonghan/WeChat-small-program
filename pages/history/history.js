@@ -3,19 +3,18 @@ import utils from '../../utils/index'
 
 Page({
   data: {
-    dataArray: [],
-    showOnce: false
+    dataArray: []
   },
-  onShow: function () {
+  onLoad: function () {
     try {
-      let value = wx.getStorageSync('star')
+      let value = wx.getStorageSync('history')
       if (value) {
         // Do something with return value
         //  提交，接收后台数据
         utils.getData(this, '', (res) => {
           if (res.data.objects.length === 0) {
             wx.showToast({
-              title: '暂无收藏',
+              title: '暂无足迹',
               icon: 'none',
               duration: 1000
             });
@@ -26,22 +25,17 @@ Page({
             this.setData({
               dataArray: res.data.objects
             });
-            if(!this.data.showOnce){
-              wx.showToast({
-                title: '加载成功',
-                icon: 'success',
-                duration: 1000
-              });
-              this.setData({
-                showOnce: true
-              });
-            }
+            wx.showToast({
+              title: '加载成功',
+              icon: 'success',
+              duration: 1000
+            });
 
           }
         }, '', '', '', value)
       }else{
         wx.showToast({
-          title: '暂无收藏',
+          title: '暂无足迹',
           icon: 'none',
           duration: 1000
         });
@@ -49,6 +43,27 @@ Page({
     } catch (e) {
       // Do something when catch error
       console.log(e)
+    }
+  },
+  tapClean: function(){
+    try {
+      wx.removeStorageSync('history')
+      this.setData({
+        dataArray: ''
+      });
+      wx.showToast({
+        title: '清除成功',
+        icon: 'none',
+        duration: 1000
+      });
+    } catch (e) {
+      // Do something when catch error
+      console.log(e)
+      wx.showToast({
+        title: '清除失败',
+        icon: 'none',
+        duration: 1000
+      });
     }
   },
   onShareAppMessage: function (res) {

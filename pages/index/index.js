@@ -29,7 +29,7 @@ Page({
           wx.showToast({
             title: '您当前城市暂无数据',
             icon: 'none',
-            duration: 3000
+            duration: 1000
           });
         } else {
           this.setData({
@@ -50,7 +50,7 @@ Page({
               wx.showToast({
                 title: res,
                 icon: 'none',
-                duration: 3000
+                duration: 1000
               });
               reject()
             })
@@ -69,7 +69,7 @@ Page({
                 wx.showToast({
                   title: '您当前城市暂无数据',
                   icon: 'none',
-                  duration: 3000
+                  duration: 1000
                 });
               }
             })
@@ -95,7 +95,7 @@ Page({
         wx.showToast({
           title: res,
           icon: 'none',
-          duration: 3000
+          duration: 1000
         });
       })
   },
@@ -153,7 +153,7 @@ Page({
     wx.showToast({
       title: '加载成功',
       icon: 'success',
-      duration: 3000
+      duration: 1000
     });
     wx.stopPullDownRefresh()
   },
@@ -184,5 +184,10 @@ Page({
       // 登录失败
       console.log(res)
     })
+  },
+  onShareAppMessage: function (res) {
+    return {
+      path: '/pages/index/index'
+    }
   }
 });

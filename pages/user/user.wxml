@@ -9,14 +9,18 @@
   </view>
   <view class="page__bd">
       <view class="list">
-        <view class="list-item">
-           <image class="list-item-img" src="/mocks/img/user-information.png"></image> 
-          <view class="list-item-text">我的信息</view>
-        </view>
-        <view class="list-item">
-           <image class="list-item-img" src="/mocks/img/user-watch.png"></image> 
-          <view class="list-item-text">我的足迹</view>
-        </view>
+        <navigator url="/pages/information/information" open-type="navigate">
+          <view class="list-item">
+            <image class="list-item-img" src="/mocks/img/user-information.png"></image> 
+            <view class="list-item-text">我的信息</view>
+          </view>
+        </navigator>
+        <navigator url="/pages/history/history" open-type="navigate">
+          <view class="list-item">
+            <image class="list-item-img" src="/mocks/img/user-watch.png"></image> 
+            <view class="list-item-text">我的足迹</view>
+          </view>
+        </navigator>
         <navigator url="/pages/star/star" open-type="navigate">
           <view class="list-item">
             <image class="list-item-img" src="/mocks/img/user-star.png"></image> 
