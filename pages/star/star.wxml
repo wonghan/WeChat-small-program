@@ -1,7 +1,7 @@
 <!-- list -->
 <view class="list">
   <block wx:for="{{dataArray}}" wx:key="{{item.id}}">
-    <navigator url="/pages/detail/detail?map={{item.map}}&route={{item.route}}&title={{item.title}}&city={{item.city}}&id={{item.id}}&style={{item.style}}&picture={{item.picture}}" open-type="navigate">
+    <navigator url="/pages/detail/detail?title={{item.title}}&id={{item.id}}&style={{item.style}}&picture={{item.picture}}&amap={{item.amap}}" open-type="navigate">
       <view class="list-item">
         <image class="list-item-img" src="{{item.picture}}" mode="aspectFill"></image>
         <view class="list-item-text">

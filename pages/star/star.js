@@ -8,9 +8,12 @@ Page({
   },
   onShow: function () {
     try {
-      let value = wx.getStorageSync('star')
-      if (value) {
-        // Do something with return value
+      let starObj = wx.getStorageSync('star')
+      if (starObj) {
+        let starArr = []
+        for(let key in starObj){
+          starArr.push(key)
+        }
         //  提交，接收后台数据
         utils.getData(this, '', (res) => {
           if (res.data.objects.length === 0) {
@@ -38,7 +41,7 @@ Page({
             }
 
           }
-        }, '', '', '', value)
+        }, '', '', '', starArr)
       }else{
         wx.showToast({
           title: '暂无收藏',
