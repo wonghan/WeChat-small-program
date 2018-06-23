@@ -10,4 +10,4 @@
 
 本项目会根据用户的历史点击推荐可能感兴趣的旅游路线
 
-![avatar](./mocks/QR_code.jpg = 300x)
+![avatar](./mocks/QR_code.jpg =300x300)
