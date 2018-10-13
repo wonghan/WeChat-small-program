@@ -1,6 +1,6 @@
 Page({
   data: {
-    url: "https://youliao.163yun.com/h5/list/?appkey=caf4091276ca42f796002285182f76bc&secretkey=130a6f954de44e29b8d6ecf236a44eb2&s=semi&ctag=adcac61e097840cc93aeed7c341dca90&ct=only"
+    url: "https://youliao.163yun.com/h5/list/?appkey=700976adeb7e42139fb56571c74a5031&secretkey=8c2be474acc54fd6b6be5e1f24a45059&s=semi&ctag=775fe309657c4ce49396796e01730fbe&ct=only"
   },
   onShareAppMessage: function (res) {
     return {
